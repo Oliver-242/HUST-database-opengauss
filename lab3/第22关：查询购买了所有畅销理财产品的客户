@@ -1,0 +1,71 @@
+    -- 22) 查询购买了所有畅销理财产品的客户
+--   请用一条SQL语句实现该查询：
+
+-- select pro_c_id,pro_pif_id,pro_type
+-- from property
+-- where pro_c_id=600
+
+
+-- select pro_pif_id
+--     from finances_product,property
+--     where p_id=pro_pif_id and pro_type=1
+--     group by pro_pif_id,p_id
+--     having count(pro_c_id)>2
+--     order by p_id desc
+
+
+
+
+
+-- select distinct pro_pif_id
+-- from property
+-- where pro_type=1 and pro_pif_id not in(
+--     select pro_pif_id
+--     from finances_product,property
+--     where p_id=pro_pif_id and pro_type=1
+--     group by pro_pif_id,p_id
+--     having count(pro_c_id)>2
+--     order by p_id desc
+-- )
+
+
+
+
+select distinct pro_pif_id
+from property,finances_product
+where  pro_type=1 and  not exists(
+    select pro_pif_id
+    from finances_product,property
+    where p_id=pro_pif_id and pro_type=1
+    group by pro_pif_id,p_id
+    having count(pro_c_id)<=2
+    order by p_id desc
+);
+
+
+
+-- select *
+-- from property, finances_product,(
+--     select pro_pif_id
+--     from finances_product,property
+--     where p_id=pro_pif_id and pro_type=1
+--     group by pro_pif_id,p_id
+--     having count(pro_c_id)>2
+--     order by p_id desc
+-- )ch
+--  where property.pro_pif_id=ch.pro_pif_id and pro_type=1
+-- and 
+--     not exists(
+--         select *
+--         from property,finances_product
+--         where pro_pif_id=p_id and pro_type=1
+--     )
+
+
+
+
+
+
+
+
+--/*  end  of  your code  */
