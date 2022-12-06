@@ -10,19 +10,9 @@ from(
         where pro_type=3 and pro_pif_id=f_id
         group by pro_purchase_time
     )prf1
-    where total_amount>=100000
+    where total_amount>=1000000
 )
-where rn in(
-    select rn
-    from(
-        select pro_purchase_time,sum(f_amount*pro_quantity) as total_amount,(rank() over (order by property.pro_purchase_time)) as rn
-        from property,fund
-        where pro_type=3 and pro_pif_id=f_id
-        group by pro_purchase_time
-    )prf1
-    where total_amount>=100000
-)
-and
+where
 rn in(
     select rn+1
     from(
@@ -31,7 +21,7 @@ rn in(
         where pro_type=3 and pro_pif_id=f_id
         group by pro_purchase_time
     )prf1
-    where total_amount>=100000
+    where total_amount>=1000000
 )
 and 
 rn in(
@@ -42,20 +32,9 @@ rn in(
         where pro_type=3 and pro_pif_id=f_id
         group by pro_purchase_time
     )prf1
-    where total_amount>=100000
+    where total_amount>=1000000
 )
 or
-rn in(
-    select rn
-    from(
-        select pro_purchase_time,sum(f_amount*pro_quantity) as total_amount,(rank() over (order by property.pro_purchase_time)) as rn
-        from property,fund
-        where pro_type=3 and pro_pif_id=f_id
-        group by pro_purchase_time
-    )prf1
-    where total_amount>=100000
-)
-and
 rn in(
     select rn+1
     from(
@@ -64,7 +43,7 @@ rn in(
         where pro_type=3 and pro_pif_id=f_id
         group by pro_purchase_time
     )prf1
-    where total_amount>=100000
+    where total_amount>=1000000
 )
 and 
 rn in(
@@ -75,20 +54,9 @@ rn in(
         where pro_type=3 and pro_pif_id=f_id
         group by pro_purchase_time
     )prf1
-    where total_amount>=100000
+    where total_amount>=1000000
 )
 or
-rn in(
-    select rn
-    from(
-        select pro_purchase_time,sum(f_amount*pro_quantity) as total_amount,(rank() over (order by property.pro_purchase_time)) as rn
-        from property,fund
-        where pro_type=3 and pro_pif_id=f_id
-        group by pro_purchase_time
-    )prf1
-    where total_amount>=100000
-)
-and
 rn in(
     select rn-2
     from(
@@ -97,7 +65,7 @@ rn in(
         where pro_type=3 and pro_pif_id=f_id
         group by pro_purchase_time
     )prf1
-    where total_amount>=100000
+    where total_amount>=1000000
 )
 and 
 rn in(
@@ -108,7 +76,7 @@ rn in(
         where pro_type=3 and pro_pif_id=f_id
         group by pro_purchase_time
     )prf1
-    where total_amount>=100000
+    where total_amount>=1000000
 )
 
 
