@@ -1,5 +1,5 @@
 -- 事务1（采用事务隔离级别- read committed）:
-set session transaction isolation level read committed;
+set session transaction isolation level repeatable read;
 
 -- 开启事务
 start transaction;
@@ -20,7 +20,7 @@ commit;
 
 
 -- 事务2（采用事务隔离级别- read committed）:
-set session transaction isolation level read committed;
+set session transaction isolation level repeatable read;
 
 -- 开启事务
 start transaction;
